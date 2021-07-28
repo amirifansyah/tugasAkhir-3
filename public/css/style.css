@@ -1,0 +1,72 @@
+body{
+    font-size: 15px;
+}
+    @font-face /*perintah untuk memanggil font eksternal*/
+    {
+        font-family: 'satisfy'; /*memberikan nama bebas untuk font*/
+        src: url('../font/Satisfy-Regular.ttf');/*memanggil file font eksternalnya di folder nexa*/
+    }
+    @font-face /*perintah untuk memanggil font eksternal*/
+    {
+        font-family: 'flower'; /*memberikan nama bebas untuk font*/
+        src: url('../font/IndieFlower-Regular.ttf');/*memanggil file font eksternalnya di folder nexa*/
+    }
+    @font-face /*perintah untuk memanggil font eksternal*/
+    {
+        font-family: 'montserrat'; /*memberikan nama bebas untuk font*/
+        src: url('../font/Montserrat-Medium.ttf');/*memanggil file font eksternalnya di folder nexa*/
+    }
+
+    h1, #judulFitur
+    {
+        font-family: 'satisfy'; /*nama yang sudah didefinisikan pada @font-face*/
+    }
+    p, h2
+    {
+        font-family: 'montserrat'; /*nama yang sudah didefinisikan pada @font-face*/
+        font-size: 16px;
+    }
+    ul li
+    {
+        font-size: 14px;
+       
+    }
+    ul li a{
+        text-decoration: none;
+    }
+    #menu{
+        font-family: 'montserrat'; /*nama yang sudah didefinisikan pada @font-face*/
+        margin-right: 50px;
+        color: white;
+    }
+    #content1{
+        background-color: rgb(252, 253, 253);
+        padding-top: 1px;
+    }
+    #content2{
+        background-color: rgb(41, 53, 52);
+        padding-top: 1px;
+    }
+
+    @media (max-width: 575.98px) { 
+        #cardFitur{
+            width: 18rem;
+        }
+    }
+   
+    @media (min-width: 576px) { 
+        #cardFitur{
+            width: 15rem;
+        }
+     }
+     @media (min-width: 768px) { 
+        #cardFitur{
+            width: 13rem;
+        }
+     }
+    @media (min-width: 992px) { 
+        #cardFitur{
+            width: 18rem;
+        }
+    }
+
