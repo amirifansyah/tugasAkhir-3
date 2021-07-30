@@ -36,11 +36,11 @@ class HomeController extends Controller
 
     
 
-    public function user(){
+    public function user(Request $request){
         if(Auth::user()->role == 'pembeli'){
             return redirect('/landing');
         }
-        $users = User::all();
+        $users = User::where('name', 'LIKE', '%'.$request->cari.'%')->get();
         return view('admin.user', compact('users'));
     }
 }

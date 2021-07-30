@@ -9,21 +9,30 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Bayar;
 use Auth;
+use App\Repository\BeratRepositories;
+use App\Repository\BeratRepository;
 
 class BeratController extends Controller
 {
+    public function __construct(BeratRepository $berat)
+    {
+        $this->berat = $berat;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // $tests = new TestRepositories();
+        // // $get = $tests->store(1, 'yayan');
+        // // dd($get);
+
         if(Auth::user()->role == 'pembeli'){
             return redirect('/landing');
         }
-        $berats = Berat::all();
-        // Alert::success('Success Title', 'Success Message');
+        $berats = Berat::where('nama', 'LIKE', '%'.$request->cari.'%')->orWhere('desc', 'LIKE', '%'.$request->cari.'%')->get();
         return view('berat.index', compact('berats'));
     }
 
@@ -45,28 +54,28 @@ class BeratController extends Controller
      */
     public function store(BeratRequest $request)
     {
-        // $berat = $request->all();
-        // $berat['gambar'] = $request->file('gambar')->store('assets/gallery', 'public');
+        $berat = $this->berat->store($request);
 
+        if($berat['status']){
+            return redirect()->route('berat.index')->with('sukses', $berat['message']);
+        } else {
+            return redirect()->route('berat.index')->with('gagal', $berat['message']);
+        }
+
+
+        // $data = $request->all();
+        // $data['gambar'] = $request->file('gambar');
+        // $filename = time() . '.' . $data['gambar']->getClientOriginalExtension();
+        // $request->file('gambar')->storeAs('public/berat/'. $filename,  ''); 
+        // // dd($filename);
+
+        // Berat::create([
+        //     'nama'           => $request->nama,
+        //     'gambar'         => $filename,
+        //     'harga'          => $request->harga,
+        //     'desc'           => $request->desc,
+        // ]);
         
-        $data = $request->all();
-        $data['gambar'] = $request->file('gambar');
-        $filename = time() . '.' . $data['gambar']->getClientOriginalExtension();
-        $request->file('gambar')->storeAs('public/berat/'. $filename,  ''); 
-        // dd($filename);
-
-        Berat::create([
-            'nama'           => $request->nama,
-            'gambar'         => $filename,
-            'harga'          => $request->harga,
-            'desc'           => $request->desc,
-        ]);
-
-
-        
-        return redirect()->route('berat.index')->with('pesan', "Makanan Berat Berhasil di Tambahkan");
-
-        // Berat::create($berat);
         // return redirect()->route('berat.index')->with('pesan', "Makanan Berat Berhasil di Tambahkan");
     }
 

@@ -10,11 +10,11 @@ use Auth;
 
 class PromoController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         if(Auth::user()->role == 'pembeli'){
             return redirect('/landing');
         }
-        $promos = Promo::all();
+        $promos = Promo::where('nama', 'LIKE', '%'.$request->cari.'%')->get();
         return view('promo.index', compact('promos'));
     }
 

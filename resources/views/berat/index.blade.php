@@ -6,11 +6,16 @@
 <div class="row">
   <div class="col-12">
     <div class="card">
-        @if (session('pesan'))
+        @if (session('sukses'))
             <div class="alert alert-success">
-                {{ session('pesan') }}
+                {{ session('sukses') }}
             </div>
         @endif
+        @if (session('gagal'))
+        <div class="alert alert-danger">
+            {{ session('gagal') }}
+        </div>
+         @endif
         @if (session('delete'))
         <div class="alert alert-danger">
             {{ session('delete') }}

@@ -18,13 +18,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Bayar $bayar_id)
+    public function index(Bayar $bayar_id, Request $request)
     {
         if(Auth::user()->role == 'pembeli'){
             return redirect('/landing');
         }
         $bayars = Bayar::with(['berat'])->find($bayar_id);
-        $orders = Order::all();
+        $orders = Order::orderBy('created_at', 'DESC')->where('namaMakanan', 'LIKE', '%'.$request->cari.'%')->get();
         return view('order.index', compact('orders'));
     }
 
@@ -102,6 +102,6 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
-        return redirect()->route('order.index');
+        return redirect()->route('order.index')->with('delete', "Orderan Dari $order->nama berhasil di hapus" );
     }
 }

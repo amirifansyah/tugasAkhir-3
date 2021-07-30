@@ -57,11 +57,25 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                               <ul class="menu-area-main">
-                                 <li class="active"><a href="#home">Home</a></li>
+                                 <li class=""><a href="#home">Home</a></li>
                                  <li><a href="#about">About</a></li>
                                  <li><a href="#products">products</a></li>
                                  <li><a href="#gallery">Promo</a></li>
-                                 <li><a href="#contact">Contact Us</a></li>	 
+                                 <li><a href="#contact">Contact Us</a></li>	
+								 <li class="nav-item active" >
+									<div class="navbar-search-block">
+									  <form class="form-inline">
+										<div class="input-group input-group-sm">
+										  <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" name="cari">
+										  <div class="input-group-append">
+											<button class="btn btn-navbar" type="submit">
+											  <i class="fas fa-search"></i>
+											</button>
+										  </div>
+										</div>
+									  </form>
+									</div>
+								  </li> 
 								<li class="nav-item dropdown">
 									<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 										{{ Auth::user()->name }}
@@ -90,28 +104,14 @@
          <!-- end header inner -->		
 	
 	</header>
-	<!-- about start-->
-	<div id="about" class="layout_padding about_section">
-		<div class="container">
-			@if (session('pesan'))
-            <div class="alert alert-success">
-                {{ session('pesan') }}
-            </div>
-        @endif
-			<div class="row">
-		        <div class="col-md-6">
-		        	<div><img src="{{asset('den/images/jajan.jpg')}}" style="max-width: 100%;"></div>
-		        </div>
-		        <div class="col-md-6">
-		        	<h1 class="about_text"><strong>About  <span class="color">Laperin</span></strong></h1>
-		        	<p class="about_taital">kami menjual jajanan kaki lima yang rassnya ga kalah sama jajanan bintang lima</p>
-		        	{{-- <button class="read_more"><a href="#">Read More</a></button> --}}
-		        </div>
-			</div>
-		</div>
-	</div>
+
 	<!-- product start-->
 	<div id="products" class="layout_padding product_section ">
+			@if (session('pesan'))
+			<div class="alert alert-success">
+				{{ session('pesan') }}
+			</div>
+			@endif
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
@@ -136,7 +136,6 @@
 						</div>
 					</div>
 					</div>
-					   {{-- @if ($berat->id = 3) @break @endif   --}}
 					
 				  <!-- Modal Berat -->
 					<div class="modal fade" id="modalberat{{$key}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -231,7 +230,6 @@
 						</div>
 					  </div>
 					</div>
-					@if ($ringan->id > 2) @break @endif  
 
 							
 				  <!-- Modal ringan -->
@@ -481,9 +479,22 @@
 			</div>
 			<div class="touch_main">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-6">
 						<div class="text-center">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d31730.107477885827!2d106.5169785!3d-6.228958899999999!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1625751123565!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div id="about" class="layout_padding about_section">
+							<div class="container">
+								<div class="row">
+									<div class="text-center">
+										<h1 class="about_text"><strong>About  <span class="color">Laperin</span></strong></h1>
+										<p class="about_taital">kami menjual jajanan kaki lima yang rassnya ga kalah sama jajanan bintang lima</p>
+										{{-- <button class="read_more"><a href="#">Read More</a></button> --}}
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

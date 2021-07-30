@@ -43,66 +43,36 @@ class LoginController extends Controller
     }
 
 
-    public function login(Request $request)
-    // {
-    //     if($request->role == 'Admin' || $request->role == 'user'){
-
-    //         $validated = $request->validate([
-    //             'email'    => 'required',
-    //             'password' =>  'required'
-    //         ],
-    //         [
-    //             'email.required'    => 'Email Tidak Boleh Kosong',
-    //             'password.required' => 'Password Tidak Boleh Kosong'
-    //         ]
-    //     );
-    //     }else{
-
-    //             // Validasi tidak ada inputan yang di masukan
-    //             if ($request->name == Null && $request->password == TRUE){
-    //                 Alert::error('Username/Email, ', 'Wajib di Isi');
-    //                 return redirect()->route('login');
-    //             }elseif ($request->password == Null && $request->name == TRUE) {
-    //                 Alert::error('Password ', 'Wajib di Isi');
-    //                 return redirect()->route('login');
-    //             }elseif($request->password == Null || $request->name == Null){
-    //                 Alert::error('Usename/Email, Password', 'Wajib di Isi');
-    //                 return redirect()->route('login');
-    //             }
-
-    //     }
-    // }
-    {
+    public function login(Request $request){
         // dd($request);
-        $validated = $request->validate([
-            'email' => 'required',
-            'password' => 'required'
-        ],
-        [
-            'email.required'    => 'Email Tidak Boleh Kosong',
-            'password.required' => 'Password Tidak Boleh Kosong'
-        ]
-    );
+        // $validated = $request->validate([
+        //     'email' => 'required',
+        //     'password' => 'required'
+        // ],
+        // [
+        //     'email.required'    => 'Email Tidak Boleh Kosong',
+        //     'password.required' => 'Password Tidak Boleh Kosong'
+        // ]
+    // );
 
         $cek = $request->only('email', 'password');
+        if ($request->email == Null && $request->password == TRUE){
+            Alert::error('Username/Email, ', 'Wajib di Isi');
+            return redirect()->route('login');
+        }elseif ($request->password == Null && $request->email == TRUE) {
+            Alert::error('Password ', 'Wajib di Isi');
+            return redirect()->route('login');
+        }elseif($request->password == Null || $request->email == Null){
+            Alert::error('Usename/Email, Password', 'Wajib di Isi');
+            return redirect()->route('login');
+        }
         // dd($cek);
+
         if(Auth::attempt($cek)){
             if(Auth::user()->role == 'admin'){
                 Alert::success('login Sukses', 'Selamat Datang');
                 return redirect()->route('order.index');
             }else if(Auth::user()->role == 'pembeli'){
-
-                                if ($request->name == Null && $request->password == TRUE){
-                                    Alert::error('Username/Email, ', 'Wajib di Isi');
-                                    return redirect()->route('login');
-                                }elseif ($request->password == Null && $request->name == TRUE) {
-                                    Alert::error('Password ', 'Wajib di Isi');
-                                    return redirect()->route('login');
-                                }elseif($request->password == Null || $request->name == Null){
-                                    Alert::error('Usename/Email, Password', 'Wajib di Isi');
-                                    return redirect()->route('login');
-                                }
-
                 return redirect()->route('landing.index');
             }
         }else{

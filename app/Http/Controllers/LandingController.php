@@ -24,15 +24,15 @@ class LandingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Order::all()->orderby('id', 'DESC')->get();
         // testimoni::orderBy('created_at', 'DESC')->paginate(3);
         
-        $berats = berat::all();
-        $ringans = Ringan::all();
+        $berats = berat::limit(3)->orderBy('created_at', 'DESC')->where('nama', 'LIKE', '%'.$request->cari.'%')->get();
+        $ringans = Ringan::limit(3)->orderBy('created_at', 'DESC')->where('nama', 'LIKE', '%'.$request->cari.'%')->get();
         $bayars = Bayar::where('user_id', Auth::user()->id)->Where('status', 0)->latest()->first();
-        $promos = Promo::all();
+        $promos = Promo::limit(4)->orderBy('created_at', 'DESC')->where('nama', 'LIKE', '%'.$request->cari.'%')->get();
         return view('landing', compact('berats', 'ringans', 'bayars', 'promos'));
     }
 

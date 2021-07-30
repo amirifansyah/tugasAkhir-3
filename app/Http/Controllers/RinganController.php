@@ -16,12 +16,12 @@ class RinganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if(Auth::user()->role == 'pembeli'){
             return redirect('/landing');
         }
-        $ringans = Ringan::all();
+        $ringans = Ringan::where('nama', 'LIKE', '%'.$request->cari.'%')->get();
         return view('ringan.index', compact('ringans'));
     }
 

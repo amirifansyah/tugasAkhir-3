@@ -49,7 +49,7 @@
               <tr @if ($loop->odd) class="bg-success" @endif>
                   <td>{{ $loop->iteration}}</td>
                   <td>{{ $order->nama}}</td>
-                  <td>{{ $order->no}}</td>
+                  <td> <a href="https://wa.me/{{$order->no}}" class="text-dark"> {{ $order->no}} </a></td>
                   <td>{{ $order->alamat}}</td>
                   <td>{{ $order->namaMakanan}}</td>
                   <td class="text-center">{{ $order->bayar->jumlah}}</td>
@@ -58,7 +58,7 @@
                     <form action="{{route('order.destroy', $order->id)}}" method="POST">
                       @method('DELETE')
                       @csrf
-                      <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                      <button class="btn btn-danger" onclick="return confirm('Apakah Kamu Yakin Menghapus Menu Makanan Ini ?')" style="font-size: 14px"><i class="far fa-trash-alt"></i></button>
                     </form>
                   </td>
               </tr>  
