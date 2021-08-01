@@ -51,13 +51,12 @@
 					</div>
 					
 
-                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                    <div class="wrap-input100 validate-input">
 						<div class="col-md-6">
 							<select name="kota" id="" class="form-control">  
-								
                                 <option value="" readonly >--Pilih Kota--</option>
                                 @foreach ($city as $item)
-                                 <option value="{{ $item->name}}"> {{ $item->name}}</option>
+                                 <option value="{{ $item->name}}" data-validate = "Valid email is required: ex@abc.xyz"> {{ $item->name}}</option>
                                  @endforeach
                             </select>
 							
