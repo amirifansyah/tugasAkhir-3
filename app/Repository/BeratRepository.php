@@ -37,7 +37,6 @@ class BeratRepository{
 
             return $result;
         } catch (\Throwable $th) {
-            dd($th);
             $result['message'] = 'Funtion Store Berat Error'.$th->getMessage();
             return $result;
         }
