@@ -24,7 +24,6 @@
           <div class="input-group input-group-sm" style="width: 150px;">
             <a href="{{route('promo.create')}}" class="btn btn-success">Create new</a>
              
-    
           </div>
         </div>
       </div>
@@ -50,7 +49,7 @@
                   <td>{{ $loop->iteration}}</td>
                   <td><img src="{{asset('storage/promo/'.$promo->gambar)}}" width="80px" alt=""></td>
                   <td>{{ $promo->nama}}</td>
-                  <td>{{ $promo->harga}}</td>
+                  <td>Rp. {{number_format($promo->harga)}}</td>
                   <td>{{ $promo->desc}}</td>
                   <td>
                     <ul>

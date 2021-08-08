@@ -21,11 +21,6 @@
         <h2 class="card-title">Daftar Order Makanan</h2>
         
         <div class="card-tools">
-          <div class="input-group input-group-sm" style="width: 150px;">
-            <a href="{{route('promo.create')}}" class="btn btn-success">Create new</a>
-             
-    
-          </div>
         </div>
       </div>
       <!-- /.card-header -->
