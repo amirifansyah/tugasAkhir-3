@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berat;
-use App\HTTP\Requests\BeratRequest;
+use App\Http\Requests\BeratRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
