@@ -39,7 +39,9 @@
               <th>No</th>
               <th>nama</th>
               <th>Email</th>
+              <th>kota</th>
               <th>Role</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -48,22 +50,15 @@
                   <td>{{ $loop->iteration}}</td>
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
+                  <th>{{$user->kota}}</th>
                   <td>{{$user->role}}</td>
-                  {{-- <td> --}}
-                    {{-- <a href="{{route('berat.edit', $berat->id)}}" class="btn btn-success"> <i class="fas fa-edit"></i> </a> --}}
-                    
-
-                 
-                      {{-- <i class="fas fa-trash-alt"></i> --}}
-                      {{-- <form action="{{route('berat.destroy', $berat->id)}}" method="POST">
+                  <td>
+                      <form action="{{route('user.destroy', $user->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <td>
-                          <button class="btn btn-danger" onclick="return confirm('Apakah Kamu Yakin Menghapus Menu Makanan Ini ?')" style="font-size: 14px"><i class="far fa-trash-alt"></i></button>
-                      </td>
-                      </form> --}}
-{{--                    
-                  </td> --}}
+                            <button class="btn btn-danger" onclick="return confirm('Apakah Kamu Yakin Menghapus user Ini ?')" style="font-size: 14px"><i class="far fa-trash-alt"></i></button>                         
+                      </form>
+                  </td>
               </tr>    
               @empty
                   <td colspan="8" class="text-center" >Data Kosong</td>

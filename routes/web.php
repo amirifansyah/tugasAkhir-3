@@ -75,5 +75,6 @@ Route::get('/city', 'CityController@city')->name('city.index');
 Route::get('/kota', 'CityController@getcity')->name('kota.index');
 
 Route::get('/user', 'HomeController@user')->name('user.index');
+Route::delete('/user/{user}', 'HomeController@destroy')->name('user.destroy');
 
 

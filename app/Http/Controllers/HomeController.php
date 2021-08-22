@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\City;
 use Auth;
 
 
@@ -40,7 +41,13 @@ class HomeController extends Controller
         if(Auth::user()->role == 'pembeli'){
             return redirect('/landing');
         }
+        $kotas = City::all();
         $users = User::where('name', 'LIKE', '%'.$request->cari.'%')->get();
-        return view('admin.user', compact('users'));
+        return view('admin.user', compact('users', 'kotas'));
+    }
+
+    public function destroy(User $user){
+        $user->delete();
+        return redirect()->route('user.index')->with('pesan', 'user pembeli berhasil di hapus');
     }
 }
